@@ -6,6 +6,7 @@ import urllib2
 import logging
 
 from google.appengine.api import memcache
+from google.appengine.ext import db
 import webapp2
 
 from kol.Session import Session
@@ -15,6 +16,7 @@ from kol.request.CursePlayerRequest import CursePlayerRequest
 from kol.request.EditPlayerRankRequest import EditPlayerRankRequest
 from kol.request.SendMessageRequest import SendMessageRequest
 from Data import Data
+from Player import Player
 
 
 def login(s):
@@ -149,9 +151,57 @@ def process(s, c):
 					# TODO: rewrite to use FindWhitelistRequest in order to not accidentally demote a player
 					e = EditPlayerRankRequest(s, chat['userId'], 6)
 					if e.doRequest()["success"]:
+						logging.debug("Promoted %s to a Lurker" % chat['userName'])
 						c.sendChatMessage("/msg %s You have been promoted to Lurker." % chat["userId"])
 					else:
 						c.sendChatMessage("/msg %s Sorry, I've failed to automatically promote you. Please see a mod." % chat['userId'])
+				elif re.match(Data.sendCarePackage, chat['text']):
+					if chat['userId'] in Data.carePackageWhitelist:
+						logging.info("Attempting to send care package to %s" % re.match(Data.sendCarePackage, chat['text']).group(1))
+						playerSearch = db.GqlQuery("SELECT * FROM Player WHERE userName = '%s'" % re.match(Data.sendCarePackage, chat['text']).group(1).lower()).get()
+						if playerSearch is None:
+							# send a package, update the datastore
+							c.sendChatMessage("/w %s Sending a care package..." % chat["userId"])
+							msgBody = {
+								"userId": re.match(Data.sendCarePackage, chat['text']).group(1),
+								"text": "Welcome to KoL and Reddit United! Here's some stuff to help you out. The lump of coal is for making an awesome weapon. Just smith it with your classes beginner weapon!",
+								"items": [
+									{
+										"id": 7021,
+										"quantity": 1
+									},
+									{
+										"id": 7022,
+										"quantity": 1
+									},
+									{
+										"id": 7005,
+										"quantity": 1
+									},
+									{
+										"id": 196,
+										"quantity": 3
+									},
+									{
+										"id": 6970,
+										"quantity": 1
+									},
+									{
+										"id": 7004,
+										"quantity": 5
+									}
+								],
+							    "meat": 1000
+							}
+							SendMessageRequest(s, msgBody).doRequest()
+							player = Player(userName=re.match(Data.sendCarePackage, chat['text']).group(1), gotPackage=True)
+							player.put()
+							c.sendChatMessage("/w %s %s has been sent a care package." % (chat['userId'], re.match(Data.sendCarePackage, chat['text']).group(1)))
+						else:
+							c.sendChatMessage("/w %s %s has already been sent a care package" % (chat['userId'], re.match(Data.sendCarePackage, chat['text']).group(1)))
+					else:
+						logging.warn("Unauthorized attempt to send care package by %s" % chat["userName"])
+						c.sendChatMessage("/w %s You are not authorized to send care packages. This incident will be reported." % chat['userId'])
 				else:
 					# No matching command was found, inform the player
 					c.sendChatMessage("/msg %s Oops, I didn't recognize what you wanted. Try again, or type !help in clan chat to receive a list of commands to use.")
