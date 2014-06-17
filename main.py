@@ -212,7 +212,7 @@ def process(s, c, counter):
 					if e.doRequest()["success"]:
 						logging.debug("Promoted %s to a Lurker" % chat['userName'])
 						c.sendChatMessage("/msg %s You have been promoted to Lurker." % chat["userId"])
-						c.sendChatMessage("/clan %s has been promoted to a Lurker." % chat["userName"])
+						c.sendChatMessage("/clan %s (#%s) has been promoted to a Lurker." % (chat["userName"], chat["userId"]))
 					else:
 						c.sendChatMessage("/msg %s Sorry, I've failed to automatically promote you. Please see a mod." % chat['userId'])
 				elif re.match(Data.sendCarePackage, chat['text']):
@@ -298,6 +298,7 @@ def process(s, c, counter):
 									playerSearch.gotPackage = True
 									playerSearch.put()
 									c.sendChatMessage("/w %s %s has been sent a care package." % (chat['userId'], re.match(Data.sendCarePackage, chat['text']).group(1)))
+									logging.info("%s has been sent a care package" % re.match(Data.sendCarePackage, chat['text']).group(1))
 								except:
 									c.sendChatMessage("/w %s Failed to send. Username may be too long and KoL chat made a space between it. Please send one manually" % chat['userName'])
 							else:
@@ -376,6 +377,42 @@ def process(s, c, counter):
 				elif re.match(Data.pickup, chat['text']):
 					incrementCounter(chat, counter)
 					c.sendChatMessage("/clan <random pickup line here>")
+				elif re.match(Data.setFlag, chat['text']):
+					if chat['userId'] == 2434890:
+						c.sendChatMessage("/clan Setting '%s' flag for %s to %s" % (re.match(Data.setFlag, chat['text']).group(1), re.match(Data.setFlag, chat['text']).group(2), re.match(Data.setFlag, chat['text']).group(3)))
+						logging.info("Setting '%s' flag for %s to %s" % (re.match(Data.setFlag, chat['text']).group(1), re.match(Data.setFlag, chat['text']).group(2), re.match(Data.setFlag, chat['text']).group(3)))
+						playerFlag = db.GqlQuery("SELECT * FROM Player WHERE userName='%s'" % re.match(Data.setFlag, chat['text']).group(1)).get()
+						if re.match(Data.setFlag, chat['text']).group(3) in ["False", "True"]:
+							if re.match(Data.setFlag, chat['text']).group(3) == "False":
+								setattr(playerFlag, re.match(Data.setFlag, chat['text']).group(2), False)
+								playerFlag.put()
+								c.sendChatMessage("/clan Flag set.")
+							else:
+								setattr(playerFlag, re.match(Data.setFlag, chat['text']).group(2), True)
+								playerFlag.put()
+								c.sendChatMessage("/clan Flag set.")
+						elif re.match(Data.setFlag, chat['text']).group(3).isdigit():
+							setattr(playerFlag, re.match(Data.setFlag, chat['text']).group(2), int(re.match(Data.setFlag, chat['text']).group(3)))
+							playerFlag.put()
+							c.sendChatMessage("/clan Flag set.")
+						else:
+							setattr(playerFlag, re.match(Data.setFlag, chat['text']).group(2), re.match(Data.setFlag, chat['text']).group(3))
+							playerFlag.put()
+							c.sendChatMessage("/clan Flag set.")
+					else:
+						c.sendChatMessage("/clan Unauthorized attempt to setFlag")
+						logging.warn("%s attempted to setFlag" % chat["userName"])
+				elif re.match(Data.getFlag, chat['text']):
+					if chat['userId'] == 2434890:
+						logging.info("Getting %s flag of %s" % (re.match(Data.getFlag, chat['text']).group(1), re.match(Data.getFlag, chat['text']).group(2)))
+						playerGql = db.GqlQuery("SELECT * FROM Player WHERE userName='%s'" % re.match(Data.getFlag, chat['text']).group(1)).get()
+						if playerGql:
+							c.sendChatMessage("/clan Flag %s for %s gives: %s" % (re.match(Data.getFlag, chat['text']).group(2), re.match(Data.getFlag, chat['text']).group(1), getattr(playerGql, re.match(Data.getFlag, chat['text']).group(2))))
+						else:
+							c.sendChatMessage("/clan Player not found!")
+					else:
+						c.sendChatMessage("/clan Unauthorized attempt to getFlag")
+						logging.warn("%s attempted to getFlag" % chat["userName"])
 				elif re.match(Data.trigger, chat['text']):
 					incrementCounter(chat, counter)
 					c.sendChatMessage("/clan Do you really expect that to be a trigger?")
