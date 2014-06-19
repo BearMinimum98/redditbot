@@ -23,7 +23,7 @@ class Data:
 	sharknado = "(?i)^!sharknado"
 	sendCarePackage = "(?i)^package (.*)$"
 	carePackageWhitelist = [2434890, 1481327, 2371834, 1871066, 2210210, 2344873, 2315738, 2479004, 1972092, 2343766, 2383225, 2491377]
-	superUser = [2434890, 2167442]
+	superUser = [2434890, 2167442, 2479004]
 	adminPlus = [2434890, 1481327, 2371834]; adminPlus.extend(superUser)
 	modPlus = [1871066, 2210210, 2344873, 2315738];	modPlus.extend(adminPlus)
 	karmanautPlus = [2479004, 2383225, 1972092, 2343766]; karmanautPlus.extend(modPlus)
