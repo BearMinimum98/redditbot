@@ -1,0 +1,20 @@
+cron:
+ - description: Check for rolling
+   schedule: every 1 minutes from 20:40 to 20:29
+   url: /task/
+   timezone: America/Los_Angeles
+ - description: Breakfast
+   schedule: every day 20:45
+   url: /breakfast/
+   timezone: America/Los_Angeles
+ - description: Flush memcache
+   schedule: every day 20:30
+   url: /flush/
+   timezone: America/Los_Angeles
+ - description: Accept new members to clan
+   schedule: every 10 minutes from 20:40 to 20:29
+   url: /clanapps/
+   timezone: America/Los_Angeles
+ - description: Fix up usernames
+   schedule: every day 20:50
+   url: /fixup/

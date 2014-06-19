@@ -1,0 +1,80 @@
+__author__ = 'Kevin'
+class Data:
+	USERNAME = "RedditBot/q"
+	PASSWORD = "Butts420"
+	playerBlacklist = []
+	diceRoll = '^[rR]oll 1[dD](([1-9])([0-9]?)+)(((?i)k|m)?) in (clan)'
+	fax = '^!fax (.*)( -hic-)?$'
+	loveMe = '((?i)I love you)(!)?'
+	helpMe = "^!help"
+	pickup = "^!sexbot"
+	snack = "^!botsnack"
+	smack = "^!botsmack"
+	optimal = "^!optimal"
+	trigger = "^!trigger"
+	customTriggerStart = "(?i)^!"
+	customTriggers = {
+		"iamcaptaindean": "More like, YouAreCaptainButt",
+		"iamcaptainbutt": "More like, IamCaptainDea- wait a sec...",
+	    "dagger32304": "I'm not fat, I'm fluffy!"
+	}
+	kill = "^!kill (.*)( -hic-)?"
+	iq = "^!iq"
+	sharknado = "(?i)^!sharknado"
+	sendCarePackage = "(?i)^package (.*)$"
+	carePackageWhitelist = [2434890, 1481327, 2371834, 1871066, 2210210, 2344873, 2315738, 2479004, 1972092, 2343766, 2383225, 2491377]
+	superUser = [2434890]
+	adminPlus = [2434890, 1481327, 2371834]; adminPlus.extend(superUser)
+	modPlus = [1871066, 2210210, 2344873, 2315738];	modPlus.extend(adminPlus)
+	karmanautPlus = [2479004, 2383225, 1972092, 2343766]; karmanautPlus.extend(modPlus)
+	upgradeStatus = "^[0-9]{4}$"
+	wang = "^((?i)wang( me)?(!)?)$"
+	wangOther = "^((?i)wang) (.*)"
+	arrow = "^((?i)arrow( me)?[\.\!\?]?)$"
+	arrowOther = "^((?i)arrow) (.*)"
+	parseFax = "FaxBot has copied a (.*) into your clan's Fax Machine"
+	setFlag = "^!setflag ['\"](.*)['\"] (.*) (.*)( -hic-)?$"
+	getFlag = "^!getflag ['\"](.*)['\"] (.*)( -hic-)?$"
+	setRank = "^!setrank (.*) (.*)( -hic-)?$"
+	whitelist = "^!whitelist (.*)( -hic-)?$"
+	ignoreMe = "^!ignoreme"
+	executeCommand = "^!execute (.*)( -hic-)?$"
+	clanMemberBack = "^((?i)back( -hic-)?)$"
+	clanMemberHi = "^((?i)(hello|hi|hiya|hello clan|hey clan|hey\, clan|hello all|hey|heya|hi y\'all|howdy|hai|yo|ahoy|g\'day|sup|\'sup|hi there)[\.\!\?]?( -hic-)?)$"
+	clanMemberLeave = "^((?i)(i\'m out|bye|goodbye|gtg|later)[\?\.\!]?( -hic-)?)$"
+	rigRoll = '^(r|R)oll 1[dD](([1-9])([0-9]?)+)(((?i)k|m)?) in (clan) get (([1-9])([0-9]?)+)'
+	WANG_LIMIT = 5
+	helpText = '''Clan chat commands:
+!help - Sends help on RedditBot to your inbox
+!fax <monster> - faxes <monster>
+!ignoreme - ignores all future commands and triggers from you. (See KevZho to undo)
+
+!whitelist <playerID> - whitelists <playerID> (Karmanaut or above)
+
+!setrank <playerID> <rankNumber> - Sets the rank of <playerID> to <rankNumber>. See KevZho for rank number info. (Mod or above)
+
+!getflag "<playername>" <flagName> - gets the value of <flagName> of <playername> (Admins only)
+
+
+PM commands:
+wang - Slaps you with a wang
+wang <playername> - Slaps <playername> with a wang
+
+arrow - Hits you with a time's arrow
+arrow <playername> - Hits <playername> with a time's arrow.
+
+package <playername> - Sends a newbie package to <playername> (Karmanaut or above)
+
+
+RANKS:
+normal member: 0,
+reddit mold: 1,
+lurker: 6,
+redditor: 5,
+top comment: 12,
+novelty account: 11,
+approved poster: 2,
+reddit gold: 3,
+karmanaut: 9'''
+	# TODO: Add in easter egg words
+	noTriggers = ["COME AT ME BRO.", "Do you know what you're doing, {0}?", "I don't understand your question, {0}.", "Have we done this before, {0}?", "{0}, I don't like it when you touch me there...", "That doesn't sound very smart, {0}.", "I can't let you do that, {0}.", "No, you can't put {1} in your ear, {0}.", "Did someone say {1}?  Because I think I heard someone say {1}.", "/em eats the {1}", "/em destroys the porcelain {1}", "/em vomits at the mention of {1}", "Nice {1} {0} honey.", "Did you learn to type {1} on your own?", "LURK MOAR", "/em faxes a {1} right out the window.", "/em wonders if you defenestrate when you get a BSOD...", "{0} makes god weep when using {1}...", "I'm a bot, not a {1}, dammit!", "{1} awakens Cthulhu.  It's about 500 years too early, so try something else.", "{1} makes me very angry.", "{1}ing will keep you regular.", "Please put down the {1} before you hurt yourself, sir or madam.", "Eat my shorts, {0}.", "How can you have any {1} if you don't eat your meat?", "You're the {2} person to ask for a {1} today.  Still not gonna happen."]

@@ -1,0 +1,34 @@
+application: ruchatbot
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /
+  script: main.app
+  login: admin
+
+- url: /flush/
+  script: flush.app
+  login: admin
+
+- url: /task/
+  script: task.app
+  login: admin
+
+- url: /breakfast/
+  script: breakfast.app
+  login: admin
+
+- url: /clanapps/
+  script: clanapps.app
+  login: admin
+
+- url: /fixup/
+  script: fixup.app
+  login: admin

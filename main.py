@@ -15,6 +15,7 @@ from kol.request.UserProfileRequest import UserProfileRequest
 from kol.request.CursePlayerRequest import CursePlayerRequest
 from kol.request.EditPlayerRankRequest import EditPlayerRankRequest
 from kol.request.SendMessageRequest import SendMessageRequest
+from kol.request.AddClannieToWhitelistRequest import AddClannieToClanWhitelistRequest
 from Data import Data
 from Player import Player
 
@@ -98,6 +99,25 @@ def counterProcess(c, counter):
 				player.baleeted = True
 				player.put()
 
+def ordinal(value):
+	try:
+		value = int(value)
+	except ValueError:
+		return value
+	if value % 100//10 != 1:
+		if value % 10 == 1:
+			ordval = u"%d%s" % (value, "st")
+		elif value % 10 == 2:
+			ordval = u"%d%s" % (value, "nd")
+		elif value % 10 == 3:
+			ordval = u"%d%s" % (value, "rd")
+		else:
+			ordval = u"%d%s" % (value, "th")
+	else:
+		ordval = u"%d%s" % (value, "th")
+
+	return ordval
+
 def process(s, c, counter):
 	chats = None
 	try:
@@ -111,34 +131,11 @@ def process(s, c, counter):
 			u = UserProfileRequest(s, chat["userId"])
 			# allow use in RU only
 			if u.doRequest()["clanName"] == "Reddit United":
-				if re.match(Data.rigRoll, chat['text']):
-					if chat['userId'] == 2434890:
-						if re.match(Data.rigRoll, chat['text']).group(5) != "k" and re.match(Data.rigRoll, chat['text']).group(5) != "m":
-							logging.debug("Rolling normally RIGGED")
-							c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % ((str(re.match(Data.rigRoll, chat['text']).group(1)) + str(re.match(Data.rigRoll, chat['text']).group(5))), chat["userName"], re.match(Data.rigRoll, chat['text']).group(8)))
-						elif re.match(Data.rigRoll, chat['text']).group(5) == "k" or re.match(Data.rigRoll, chat['text']).group(5) == "K":
-							logging.debug("Rolling x1000 RIGGED")
-							c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % ((str(re.match(Data.rigRoll, chat['text']).group(1)) + str(re.match(Data.rigRoll, chat['text']).group(5))), chat["userName"], re.match(Data.rigRoll, chat['text']).group(8)))
-						elif re.match(Data.rigRoll, chat['text']).group(5) == "m" or re.match(Data.rigRoll, chat['text']).group(5) == "M":
-							logging.debug("Rolling x1m RIGGED")
-							c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % ((str(re.match(Data.rigRoll, chat['text']).group(1)) + str(re.match(Data.rigRoll, chat['text']).group(5))), chat["userName"],  re.match(Data.rigRoll, chat['text']).group(8)))
-				elif re.match(Data.diceRoll, chat['text']):
-					# roll! group 2 = #, group 5 = k or m, group 7 = channel
-					logging.debug(re.match(Data.diceRoll, chat['text']).group(5))
-					if re.match(Data.diceRoll, chat['text']).group(5) != "k" and re.match(Data.diceRoll, chat['text']).group(5) != "m":
-						logging.debug("Rolling normally")
-						c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % (str(re.match(Data.diceRoll, chat['text']).group(1)), chat["userName"], random.randint(1, int(re.match(Data.diceRoll, chat['text']).group(1)))))
-					elif re.match(Data.diceRoll, chat['text']).group(5) == "k" or re.match(Data.diceRoll, chat['text']).group(5) == "K":
-						logging.debug("Rolling x1000")
-						c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % ((str(re.match(Data.diceRoll, chat['text']).group(1)) + str(re.match(Data.diceRoll, chat['text']).group(5))), chat["userName"], random.randint(1, int(re.match(Data.diceRoll, chat['text']).group(1)) * 1000)))
-					elif re.match(Data.diceRoll, chat['text']).group(5) == "m" or re.match(Data.diceRoll, chat['text']).group(5) == "M":
-						logging.debug("Rolling x1m")
-						c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % ((str(re.match(Data.diceRoll, chat['text']).group(1)) + str(re.match(Data.diceRoll, chat['text']).group(5))), chat["userName"], random.randint(1, int(re.match(Data.diceRoll, chat['text']).group(1)) * 1000000)))
-				elif re.match(Data.wang, chat['text']):
+				if re.match(Data.wang, chat['text']):
 					player = db.GqlQuery("SELECT * FROM Player WHERE userName='%s'" % chat['userName'].lower()).get()
 					if player is None:
 						player = Player(userName=chat['userName'].lower(), gotPackage=False, wangsUsed=0, arrowUsed=False)
-					if player.wangsUsed <= 5:
+					if player.wangsUsed < Data.WANG_LIMIT:
 						logging.debug("hitting %s with a wang" % chat['userName'])
 						wang = CursePlayerRequest(s, chat["userId"], 625)
 						try:
@@ -151,12 +148,35 @@ def process(s, c, counter):
 					else:
 						logging.warn("%s has hit limit for wang" % chat['userName'])
 						c.sendChatMessage("/msg %s You have used all 5 wangs for the day." % chat['userId'])
+				# elif re.match(Data.rigRoll, chat['text']):
+				# 	if chat['userId'] == 2434890:
+				# 		if re.match(Data.rigRoll, chat['text']).group(5) != "k" and re.match(Data.rigRoll, chat['text']).group(5) != "m":
+				# 			logging.debug("Rolling normally RIGGED")
+				# 			c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % ((str(re.match(Data.rigRoll, chat['text']).group(1)) + str(re.match(Data.rigRoll, chat['text']).group(5))), chat["userName"], re.match(Data.rigRoll, chat['text']).group(8)))
+				# 		elif re.match(Data.rigRoll, chat['text']).group(5) == "k" or re.match(Data.rigRoll, chat['text']).group(5) == "K":
+				# 			logging.debug("Rolling x1000 RIGGED")
+				# 			c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % ((str(re.match(Data.rigRoll, chat['text']).group(1)) + str(re.match(Data.rigRoll, chat['text']).group(5))), chat["userName"], re.match(Data.rigRoll, chat['text']).group(8)))
+				# 		elif re.match(Data.rigRoll, chat['text']).group(5) == "m" or re.match(Data.rigRoll, chat['text']).group(5) == "M":
+				# 			logging.debug("Rolling x1m RIGGED")
+				# 			c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % ((str(re.match(Data.rigRoll, chat['text']).group(1)) + str(re.match(Data.rigRoll, chat['text']).group(5))), chat["userName"],  re.match(Data.rigRoll, chat['text']).group(8)))
+				# elif re.match(Data.diceRoll, chat['text']):
+				# 	# roll! group 2 = #, group 5 = k or m, group 7 = channel
+				# 	logging.debug(re.match(Data.diceRoll, chat['text']).group(5))
+				# 	if re.match(Data.diceRoll, chat['text']).group(5) != "k" and re.match(Data.diceRoll, chat['text']).group(5) != "m":
+				# 		logging.debug("Rolling normally")
+				# 		c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % (str(re.match(Data.diceRoll, chat['text']).group(1)), chat["userName"], random.randint(1, int(re.match(Data.diceRoll, chat['text']).group(1)))))
+				# 	elif re.match(Data.diceRoll, chat['text']).group(5) == "k" or re.match(Data.diceRoll, chat['text']).group(5) == "K":
+				# 		logging.debug("Rolling x1000")
+				# 		c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % ((str(re.match(Data.diceRoll, chat['text']).group(1)) + str(re.match(Data.diceRoll, chat['text']).group(5))), chat["userName"], random.randint(1, int(re.match(Data.diceRoll, chat['text']).group(1)) * 1000)))
+				# 	elif re.match(Data.diceRoll, chat['text']).group(5) == "m" or re.match(Data.diceRoll, chat['text']).group(5) == "M":
+				# 		logging.debug("Rolling x1m")
+				# 		c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % ((str(re.match(Data.diceRoll, chat['text']).group(1)) + str(re.match(Data.diceRoll, chat['text']).group(5))), chat["userName"], random.randint(1, int(re.match(Data.diceRoll, chat['text']).group(1)) * 1000000)))
 				elif re.match(Data.wangOther, chat['text']):
 					logging.debug("slapping %s with a wang. request by %s" % (re.match(Data.wangOther, chat['text']).group(2), chat['userName']))
 					player = db.GqlQuery("SELECT * FROM Player WHERE userName='%s'" % chat['userName'].lower()).get()
 					if player is None:
 						player = Player(userName=chat['userName'].lower(), gotPackage=False, wangsUsed=0, arrowUsed=False)
-					if player.wangsUsed <= 5:
+					if player.wangsUsed < Data.WANG_LIMIT:
 						wang = CursePlayerRequest(s, re.match(Data.wangOther, chat['text']).group(2), 625)
 						try:
 							wang.doRequest()
@@ -168,9 +188,9 @@ def process(s, c, counter):
 					else:
 						logging.warn("%s has hit limit for wang" % chat['userName'])
 						c.sendChatMessage("/msg %s You have used all 5 wangs for the day." % chat['userId'])
-				elif re.match(Data.loveMe, chat['text']):
-					logging.debug("sending love back at %s" % chat['userName'])
-					c.sendChatMessage("/msg %s Awww... I love you back!" % chat["userId"])
+				# elif re.match(Data.loveMe, chat['text']):
+				# 	logging.debug("sending love back at %s" % chat['userName'])
+				# 	c.sendChatMessage("/msg %s Awww... I love you back!" % chat["userId"])
 				elif re.match(Data.arrow, chat['text']):
 					logging.debug("hitting %s with a time's arrow" % chat['userId'])
 					player = db.GqlQuery("SELECT * FROM Player WHERE userName = '%s'" % chat['userName'].lower()).get()
@@ -211,6 +231,7 @@ def process(s, c, counter):
 					e = EditPlayerRankRequest(s, chat['userId'], 6)
 					if e.doRequest()["success"]:
 						logging.debug("Promoted %s to a Lurker" % chat['userName'])
+						AddClannieToClanWhitelistRequest(s, chat['userId']).doRequest()
 						c.sendChatMessage("/msg %s You have been promoted to Lurker." % chat["userId"])
 						c.sendChatMessage("/clan %s (#%s) has been promoted to a Lurker." % (chat["userName"], chat["userId"]))
 					else:
@@ -219,43 +240,17 @@ def process(s, c, counter):
 					if chat['userId'] in Data.carePackageWhitelist:
 						logging.info("Attempting to send care package to %s request by %s" % (re.match(Data.sendCarePackage, chat['text']).group(1), chat['userName']))
 						playerSearch = db.GqlQuery("SELECT * FROM Player WHERE userName = '%s'" % re.match(Data.sendCarePackage, chat['text']).group(1).lower()).get()
+						msgBody = {
+							"userId": re.match(Data.sendCarePackage, chat['text']).group(1),
+							"text": "Welcome to KoL and Reddit United! Here's some stuff to help you out. The lump of coal is for making an awesome weapon. Just smith it with your classes beginner weapon! Be sure to use those Flaskfull's for an additional buff!\nThis newbie package was requested by %s for you" % chat["userName"],
+							"items": [{"id": 7021, "quantity": 1}, {"id": 7022,	"quantity": 1},	{"id": 7005, "quantity": 1}, {"id": 196, "quantity": 3}, {"id": 6970, "quantity": 1}, {"id": 7004, "quantity": 5	}],	"meat": 1000
+						}
 						if playerSearch is None:
 							# send a package, update the datastore
 							c.sendChatMessage("/w %s Sending a care package..." % chat["userId"])
 							try:
-								msgBody = {
-									"userId": re.match(Data.sendCarePackage, chat['text']).group(1),
-									"text": "Welcome to KoL and Reddit United! Here's some stuff to help you out. The lump of coal is for making an awesome weapon. Just smith it with your classes beginner weapon! Be sure to use those Flaskfull's for an additional buff!\nThis newbie package was requested by %s for you" % chat["userName"],
-									"items": [
-										{
-											"id": 7021,
-											"quantity": 1
-										},
-										{
-											"id": 7022,
-											"quantity": 1
-										},
-										{
-											"id": 7005,
-											"quantity": 1
-										},
-										{
-											"id": 196,
-											"quantity": 3
-										},
-										{
-											"id": 6970,
-											"quantity": 1
-										},
-										{
-											"id": 7004,
-											"quantity": 5
-										}
-									],
-									"meat": 1000
-								}
 								SendMessageRequest(s, msgBody).doRequest()
-								Player(userName=re.match(Data.sendCarePackage, chat['text']).group(1), gotPackage=True, wangsUsed=0, arrowsUsed=False).put()
+								Player(userName=re.match(Data.sendCarePackage, chat['text']).group(1).lower(), gotPackage=True, wangsUsed=0, arrowsUsed=False).put()
 								c.sendChatMessage("/w %s %s has been sent a care package." % (chat['userId'], re.match(Data.sendCarePackage, chat['text']).group(1)))
 							except:
 								c.sendChatMessage("/w %s Failed to send. Username may be too long and KoL chat made a space between it. Please send one manually" % chat['userName'])
@@ -263,37 +258,6 @@ def process(s, c, counter):
 							if playerSearch.gotPackage is False:
 								c.sendChatMessage("/w %s Sending a care package..." % chat["userId"])
 								try:
-									msgBody = {
-										"userId": re.match(Data.sendCarePackage, chat['text']).group(1),
-										"text": "Welcome to KoL and Reddit United! Here's some stuff to help you out. The lump of coal is for making an awesome weapon. Just smith it with your classes beginner weapon! Be sure to use those Flaskfull's for an additional buff!\nThis newbie package was requested by %s for you" % chat["userName"],
-										"items": [
-											{
-												"id": 7021,
-												"quantity": 1
-											},
-											{
-												"id": 7022,
-												"quantity": 1
-											},
-											{
-												"id": 7005,
-												"quantity": 1
-											},
-											{
-												"id": 196,
-												"quantity": 3
-											},
-											{
-												"id": 6970,
-												"quantity": 1
-											},
-											{
-												"id": 7004,
-												"quantity": 5
-											}
-										],
-										"meat": 1000
-									}
 									SendMessageRequest(s, msgBody).doRequest()
 									playerSearch.gotPackage = True
 									playerSearch.put()
@@ -301,6 +265,7 @@ def process(s, c, counter):
 									logging.info("%s has been sent a care package" % re.match(Data.sendCarePackage, chat['text']).group(1))
 								except:
 									c.sendChatMessage("/w %s Failed to send. Username may be too long and KoL chat made a space between it. Please send one manually" % chat['userName'])
+									logging.error("Failed to send package to %s" % re.match(Data.sendCarePackage, chat['text']).group(1))
 							else:
 								logging.warn("Failed to send package to %s, player has been sent one already" % re.match(Data.sendCarePackage, chat['text']).group(1))
 								c.sendChatMessage("/w %s %s has already been sent a care package" % (chat['userId'], re.match(Data.sendCarePackage, chat['text']).group(1)))
@@ -325,60 +290,89 @@ def process(s, c, counter):
 			if "channel" in chat and chat["channel"] == "clan" and chat["userId"] not in Data.playerBlacklist:
 				if re.match(Data.fax, chat['text']):
 					incrementCounter(chat, counter)
-					c.sendChatMessage("/clan Faxing a %s..." % chat['text'][5:])
-					logging.debug("faxing a %s. requested by %s" % (chat['text'][5:], chat['userName']))
-					c.sendChatMessage("/w FaxBot %s" % chat['text'][5:])
-				elif re.match(Data.clanMemberBack, chat['text']):
-					incrementCounter(chat, counter)
-					logging.debug("w/b to %s" % chat['userName'])
-					c.sendChatMessage("/clan Welcome back, %s!" % chat["userName"])
-				elif re.match(Data.clanMemberHi, chat['text']):
-					incrementCounter(chat, counter)
-					logging.debug("hello to %s" % chat['userName'])
-					c.sendChatMessage("/clan Hello, %s!" % chat["userName"])
-				elif re.match(Data.clanMemberLeave, chat['text']):
-					incrementCounter(chat, counter)
-					logging.debug("goodbye to %s" % chat['userName'])
-					c.sendChatMessage("/clan Goodbye, %s!" % chat["userName"])
-				elif re.match(Data.snack, chat['text']):
-					incrementCounter(chat, counter)
-					logging.debug("munching on a snack from %s" % chat['userName'])
-					c.sendChatMessage("/clan /me munches on the snack happily")
-				elif re.match(Data.smack, chat['text']):
-					incrementCounter(chat, counter)
-					logging.debug("smacked by %s" % chat['userName'])
-					c.sendChatMessage("/clan /me smacks %s back twice as hard" % chat['userName'])
-				elif re.match(Data.optimal, chat['text']):
-					incrementCounter(chat, counter)
-					logging.debug("acknowledge optimal by %s" % chat['userName'])
-					if chat['userName'].lower() not in ["kevzho", "basbryan", "sweeepss"]:
-						c.sendChatMessage("/clan No, %s, you are not optimal enough for Kev" % chat['userName'])
+					c.sendChatMessage("/clan Faxing a %s..." % re.match(Data.fax, chat['text']).group(1))
+					logging.debug("faxing a %s. requested by %s" % (re.match(Data.fax, chat['text']).group(1), chat['userName']))
+					c.sendChatMessage("/w FaxBot %s" % re.match(Data.fax, chat['text']).group(1))
+				# elif re.match(Data.clanMemberBack, chat['text']):
+				# 	incrementCounter(chat, counter)
+				# 	logging.debug("w/b to %s" % chat['userName'])
+				# 	c.sendChatMessage("/clan Welcome back, %s!" % chat["userName"])
+				# elif re.match(Data.clanMemberHi, chat['text']):
+				# 	incrementCounter(chat, counter)
+				# 	logging.debug("hello to %s" % chat['userName'])
+				# 	c.sendChatMessage("/clan Hello, %s!" % chat["userName"])
+				# elif re.match(Data.clanMemberLeave, chat['text']):
+				# 	incrementCounter(chat, counter)
+				# 	logging.debug("goodbye to %s" % chat['userName'])
+				# 	c.sendChatMessage("/clan Goodbye, %s!" % chat["userName"])
+				# elif re.match(Data.snack, chat['text']):
+				# 	incrementCounter(chat, counter)
+				# 	logging.debug("munching on a snack from %s" % chat['userName'])
+				# 	c.sendChatMessage("/clan /me munches on the snack happily")
+				# elif re.match(Data.smack, chat['text']):
+				# 	incrementCounter(chat, counter)
+				# 	logging.debug("smacked by %s" % chat['userName'])
+				# 	c.sendChatMessage("/clan /me smacks %s back twice as hard" % chat['userName'])
+				elif re.match(Data.ignoreMe, chat['text']):
+					logging.debug("ignoring %s by own request" % chat['userName'])
+					c.sendChatMessage("/clan You have been ignored by RedditBot. Note that this has permanently locked you out of all of RedditBot's features.")
+					c.sendChatMessage("/baleet %s" % chat['userId'])
+					player = db.GqlQuery("SELECT * FROM Player WHERE userName='%s'" % chat['userName']).get()
+					if player is None:
+						Player(userName=chat['userName'].lower(), gotPackage=False, baleeted=True, wangsUsed=0, arrowsUsed=False).put()
 					else:
-						c.sendChatMessage("/clan Yes, %s, you are optimal." % chat["userName"])
-				elif re.match(Data.sharknado, chat['text']):
-					incrementCounter(chat, counter)
-					c.sendChatMessage("/clan Sharknado was a horrible movie. Just... no.")
+						player.baleeted = True
+						player.put()
+				elif re.match(Data.executeCommand, chat['text']):
+					# perm type: SU only
+					if chat['userId'] in Data.superUser:
+						logging.info("execute %s" % re.match(Data.executeCommand, chat['text']).group(1))
+						c.sendChatMessage(re.match(Data.executeCommand, chat['text']).group(1))
+						c.sendChatMessage("/clan Executed %s." % re.match(Data.executeCommand, chat['text']).group(1))
+					else:
+						logging.warn("unauthorized executeCommand by %s" % chat['userName'])
+						c.sendChatMessage("/clan You are not authorized to use that command.")
+				elif re.match(Data.setRank, chat['text']):
+					# perm type: mod+
+					if chat['userId'] in Data.modPlus:
+						logging.info("setting rank for %s to %s" % (re.match(Data.setRank, chat['text']).group(1), re.match(Data.setRank, chat['text']).group(2)))
+						worked = EditPlayerRankRequest(s, re.match(Data.setRank, chat['text']).group(1), re.match(Data.setRank, chat['text']).group(2)).doRequest()["success"]
+						if worked:
+							c.sendChatMessage("/clan Rank has been set.")
+						else:
+							c.sendChatMessage("/clan Failed to set rank.")
+					else:
+						logging.warn("unauthorized setRank by %s" % chat['userName'])
+						c.sendChatMessage("/clan You are not authorized to use that command.")
+				# elif re.match(Data.optimal, chat['text']):
+				# 	incrementCounter(chat, counter)
+				# 	logging.debug("acknowledge optimal by %s" % chat['userName'])
+				# 	if chat['userName'].lower() not in ["kevzho", "basbryan", "sweeepss"]:
+				# 		c.sendChatMessage("/clan No, %s, you are not optimal enough for Kev" % chat['userName'])
+				# 	else:
+				# 		c.sendChatMessage("/clan Yes, %s, you are optimal." % chat["userName"])
+				# elif re.match(Data.sharknado, chat['text']):
+				# 	incrementCounter(chat, counter)
+				# 	c.sendChatMessage("/clan Sharknado was a horrible movie. Just... no.")
 				elif re.match(Data.helpMe, chat['text']):
 					incrementCounter(chat, counter)
 					msg = SendMessageRequest(s, {"userId": chat["userId"], "text": Data.helpText})
 					msg.doRequest()
-				elif re.match(Data.kill, chat['text']):
-					incrementCounter(chat, counter)
-					if chat['userName'].lower() not in ["kevzho", "redditbot", "jick"]:
-						c.sendChatMessage("/clan Commencing the killing of %s" % chat['text'][5:])
-					else:
-						c.sendChatMessage("/clan I cannot kill my master.")
-				elif re.match(Data.iq, chat['text']):
-					incrementCounter(chat, counter)
-					if chat['username'].lower() != "kevzho":
-						c.sendChatMessage("/clan My IQ is higher than yours, %s" % chat['userName'])
-					else:
-						c.sendChatMessage("/clan How can I be smarter than my creator? Don't be silly, %s" % chat["userName"])
-				elif re.match(Data.pickup, chat['text']):
-					incrementCounter(chat, counter)
-					c.sendChatMessage("/clan <random pickup line here>")
+				# elif re.match(Data.kill, chat['text']):
+				# 	incrementCounter(chat, counter)
+				# 	if re.match(Data.kill, chat['text']).group(1).lower() not in ["kevzho", "redditbot", "jick"]:
+				# 		c.sendChatMessage("/clan Commencing the killing of %s" % re.match(Data.kill, chat['text']).group(1))
+				# 	else:
+				# 		c.sendChatMessage("/clan I cannot kill that player.")
+				# elif re.match(Data.iq, chat['text']):
+				# 	incrementCounter(chat, counter)
+				# 	if chat['username'].lower() != "kevzho":
+				# 		c.sendChatMessage("/clan My IQ is higher than yours, %s" % chat['userName'])
+				# 	else:
+				# 		c.sendChatMessage("/clan How can I be smarter than my creator? Don't be silly, %s" % chat["userName"])
 				elif re.match(Data.setFlag, chat['text']):
-					if chat['userId'] == 2434890:
+					# perm type: SU only
+					if chat['userId'] in Data.superUser:
 						c.sendChatMessage("/clan Setting '%s' flag for %s to %s" % (re.match(Data.setFlag, chat['text']).group(1), re.match(Data.setFlag, chat['text']).group(2), re.match(Data.setFlag, chat['text']).group(3)))
 						logging.info("Setting '%s' flag for %s to %s" % (re.match(Data.setFlag, chat['text']).group(1), re.match(Data.setFlag, chat['text']).group(2), re.match(Data.setFlag, chat['text']).group(3)))
 						playerFlag = db.GqlQuery("SELECT * FROM Player WHERE userName='%s'" % re.match(Data.setFlag, chat['text']).group(1)).get()
@@ -403,7 +397,8 @@ def process(s, c, counter):
 						c.sendChatMessage("/clan Unauthorized attempt to setFlag")
 						logging.warn("%s attempted to setFlag" % chat["userName"])
 				elif re.match(Data.getFlag, chat['text']):
-					if chat['userId'] == 2434890:
+					# perm type: SU only/admin?
+					if chat['userId'] in Data.adminPlus:
 						logging.info("Getting %s flag of %s" % (re.match(Data.getFlag, chat['text']).group(1), re.match(Data.getFlag, chat['text']).group(2)))
 						playerGql = db.GqlQuery("SELECT * FROM Player WHERE userName='%s'" % re.match(Data.getFlag, chat['text']).group(1)).get()
 						if playerGql:
@@ -413,12 +408,23 @@ def process(s, c, counter):
 					else:
 						c.sendChatMessage("/clan Unauthorized attempt to getFlag")
 						logging.warn("%s attempted to getFlag" % chat["userName"])
-				elif re.match(Data.trigger, chat['text']):
+				elif re.match(Data.whitelist, chat['text']):
+					if chat['userId'] in Data.karmanautPlus:
+						logging.info("adding %s to whitelist requested by %s" % (re.match(Data.whitelist, chat['text']).group(1), chat['userName']))
+						AddClannieToClanWhitelistRequest(s, re.match(Data.whitelist, chat['text']).group(1)).doRequest()
+						c.sendChatMessage("/clan Player added to whitelist.")
+					else:
+						c.sendChatMessage("/clan Unauthorized attempt to whitelist")
+						logging.warn("%s attempted to whitelist" % chat['userName'])
+				# elif re.match(Data.trigger, chat['text']):
+				# 	incrementCounter(chat, counter)
+				# 	c.sendChatMessage("/clan Do you really expect that to be a trigger?")
+				elif re.match("^!([^ ]+)(.*)?$", chat['text']):
 					incrementCounter(chat, counter)
-					c.sendChatMessage("/clan Do you really expect that to be a trigger?")
-				elif re.match("^!", chat['text']):
-					incrementCounter(chat, counter)
-					c.sendChatMessage("/clan That isn't a trigger. Type !help for command help.")
+					if re.match("^!([^ ]+)(.*)?$", chat['text']).group(1).lower() in Data.customTriggers:
+						c.sendChatMessage(Data.customTriggers[re.match("^!([^ ]+)(.*)?$", chat['text']).group(1).lower()])
+					else:
+						c.sendChatMessage("/clan %s" % random.choice(Data.noTriggers).format(chat['userName'], re.match("^!([^ ]+)(.*)?$", chat['text']).group(1), ordinal(random.randint(1, 100))))
 
 
 class MainHandler(webapp2.RequestHandler):
