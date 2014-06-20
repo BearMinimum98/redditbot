@@ -336,8 +336,12 @@ def process(s, c, counter):
 					# perm type: mod+
 					if chat['userId'] in Data.modPlus:
 						logging.info("setting rank for %s to %s" % (re.match(Data.setRank, chat['text']).group(1), re.match(Data.setRank, chat['text']).group(2)))
-						worked = EditPlayerRankRequest(s, re.match(Data.setRank, chat['text']).group(1), re.match(Data.setRank, chat['text']).group(2)).doRequest()["success"]
-						if worked:
+						resp = {}
+						if re.match(Data.setRank, chat['text']).group(2).isdigit():
+							resp = EditPlayerRankRequest(s, re.match(Data.setRank, chat['text']).group(1), re.match(Data.setRank, chat['text']).group(2))
+						else:
+							resp = EditPlayerRankRequest(s, re.match(Data.setRank, chat['text']).group(1), EditPlayerRankRequest.ranks[re.match(Data.setRank, chat['text']).group(2).lower()]).doRequest()
+						if resp['success']:
 							c.sendChatMessage("/clan Rank has been set.")
 						else:
 							c.sendChatMessage("/clan Failed to set rank.")
