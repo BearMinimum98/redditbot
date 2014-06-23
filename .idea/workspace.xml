@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data.py" afterPath="$PROJECT_DIR$/Data.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ruchatbot.iws" />
@@ -18,7 +19,7 @@
     <file path="/ApiRequest.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1402542172200" ignored="false" />
     <file path="/ClanWhitelistRequest.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1402543382531" ignored="false" />
     <file path="/FindWhitelistRequest.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1402544192049" ignored="false" />
-    <file path="/Dummy.txt" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1403240008939" ignored="false" />
+    <file path="/Dummy.txt" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1403481803615" ignored="false" />
     <file path="/Player.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1402894058633" ignored="false" />
     <file path="/flush.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1403136530928" ignored="false" />
     <file path="/fixup.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1403137215981" ignored="false" />
@@ -43,19 +44,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Data.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Data.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="34" selection-start="1523" selection-end="1523" vertical-scroll-proportion="0.0">
+            <state line="63" column="59" selection-start="2682" selection-end="2682" vertical-scroll-proportion="0.43534994">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="347" column="25" selection-start="19847" selection-end="19847" vertical-scroll-proportion="0.020481927">
+            <state line="380" column="83" selection-start="21884" selection-end="21884" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -138,8 +139,8 @@
         <option value="$PROJECT_DIR$/flush.py" />
         <option value="$PROJECT_DIR$/fixup.py" />
         <option value="$PROJECT_DIR$/clanapps.py" />
-        <option value="$PROJECT_DIR$/Data.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/Data.py" />
       </list>
     </option>
   </component>
@@ -213,16 +214,16 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="163" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="837" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="837" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="837" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="163" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="161" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -529,13 +530,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="34" selection-start="1523" selection-end="1523" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kol/request/EditPlayerRankRequest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="45" selection-start="662" selection-end="662" vertical-scroll-proportion="0.0">
@@ -545,7 +539,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="347" column="25" selection-start="19847" selection-end="19847" vertical-scroll-proportion="0.020481927">
+        <state line="380" column="83" selection-start="21884" selection-end="21884" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="59" selection-start="2682" selection-end="2682" vertical-scroll-proportion="0.43534994">
           <folding />
         </state>
       </provider>
