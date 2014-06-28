@@ -305,14 +305,14 @@ def process(s, c, counter):
 				# 	incrementCounter(chat, counter)
 				# 	logging.debug("goodbye to %s" % chat['userName'])
 				# 	c.sendChatMessage("/clan Goodbye, %s!" % chat["userName"])
-				# elif re.match(Data.snack, chat['text']):
-				# 	incrementCounter(chat, counter)
-				# 	logging.debug("munching on a snack from %s" % chat['userName'])
-				# 	c.sendChatMessage("/clan /me munches on the snack happily")
-				# elif re.match(Data.smack, chat['text']):
-				# 	incrementCounter(chat, counter)
-				# 	logging.debug("smacked by %s" % chat['userName'])
-				# 	c.sendChatMessage("/clan /me smacks %s back twice as hard" % chat['userName'])
+				elif re.match(Data.snack, chat['text']):
+					incrementCounter(chat, counter)
+					logging.debug("munching on a snack from %s" % chat['userName'])
+					c.sendChatMessage("/clan /me munches on the snack happily")
+				elif re.match(Data.smack, chat['text']):
+					incrementCounter(chat, counter)
+					logging.debug("smacked by %s" % chat['userName'])
+					c.sendChatMessage("/clan /me smacks %s back twice as hard" % chat['userName'])
 				elif re.match(Data.ignoreMe, chat['text']):
 					logging.debug("ignoring %s by own request" % chat['userName'])
 					c.sendChatMessage("/clan You have been ignored by RedditBot. Note that this has permanently locked you out of all of RedditBot's features.")
@@ -348,13 +348,13 @@ def process(s, c, counter):
 					else:
 						logging.warn("unauthorized setRank by %s" % chat['userName'])
 						c.sendChatMessage("/clan You are not authorized to use that command.")
-				# elif re.match(Data.optimal, chat['text']):
-				# 	incrementCounter(chat, counter)
-				# 	logging.debug("acknowledge optimal by %s" % chat['userName'])
-				# 	if chat['userName'].lower() not in ["kevzho", "basbryan", "sweeepss"]:
-				# 		c.sendChatMessage("/clan No, %s, you are not optimal enough for Kev" % chat['userName'])
-				# 	else:
-				# 		c.sendChatMessage("/clan Yes, %s, you are optimal." % chat["userName"])
+				elif re.match(Data.optimal, chat['text']):
+					incrementCounter(chat, counter)
+					logging.debug("acknowledge optimal by %s" % chat['userName'])
+					if chat['userName'].lower() not in ["kevzho", "basbryan", "sweeepss"]:
+						c.sendChatMessage("/clan No, %s, you are not optimal enough for Kev" % chat['userName'])
+					else:
+						c.sendChatMessage("/clan Yes, %s, you are optimal." % chat["userName"])
 				# elif re.match(Data.sharknado, chat['text']):
 				# 	incrementCounter(chat, counter)
 				# 	c.sendChatMessage("/clan Sharknado was a horrible movie. Just... no.")
