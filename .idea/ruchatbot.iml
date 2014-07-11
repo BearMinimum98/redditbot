@@ -4,7 +4,7 @@
     <facet type="google-appengine-python" name="Google App Engine (Python)">
       <configuration>
         <option name="rootFolder" value="C:\Users\Kevin\PycharmProjects\ruchatbot" />
-        <option name="sdkFolder" value="C:\Program Files\Google\google_appengine" />
+        <option name="sdkFolder" value="C:\Program Files (x86)\Google\google_appengine" />
         <option name="templatesFolder" value="" />
         <option name="email" value="KevZho141@gmail.com" />
         <option name="gp" value="df9bdfc2df89dfd9dfc2dfcbdfe9dfc1dfd0df9adfd8dfd9" />

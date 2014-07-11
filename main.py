@@ -227,15 +227,16 @@ def process(s, c, counter):
 						logging.warn("%s hit limit for time's arrow" % chat['userName'])
 						c.sendChatMessage("/msg %s You have used your arrow for the day." % chat['userId'])
 				elif re.match(Data.upgradeStatus, chat['text']):
-					# TODO: rewrite to use FindWhitelistRequest in order to not accidentally demote a player
-					e = EditPlayerRankRequest(s, chat['userId'], 6)
-					if e.doRequest()["success"]:
-						logging.debug("Promoted %s to a Lurker" % chat['userName'])
-						AddClannieToClanWhitelistRequest(s, chat['userId']).doRequest()
-						c.sendChatMessage("/msg %s You have been promoted to Lurker." % chat["userId"])
-						c.sendChatMessage("/clan %s (#%s) has been promoted to a Lurker." % (chat["userName"], chat["userId"]))
-					else:
-						c.sendChatMessage("/msg %s Sorry, I've failed to automatically promote you. Please see a mod." % chat['userId'])
+					c.sendChatMessage("/msg %s Rank upgrades have been moved to RedditRankBot. Please PM him instead." % chat['userId'])
+					# # TODO: rewrite to use FindWhitelistRequest in order to not accidentally demote a player
+					# e = EditPlayerRankRequest(s, chat['userId'], 6)
+					# if e.doRequest()["success"]:
+					# 	logging.debug("Promoted %s to a Lurker" % chat['userName'])
+					# 	AddClannieToClanWhitelistRequest(s, chat['userId']).doRequest()
+					# 	c.sendChatMessage("/msg %s You have been promoted to Lurker." % chat["userId"])
+					# 	c.sendChatMessage("/clan %s (#%s) has been promoted to a Lurker." % (chat["userName"], chat["userId"]))
+					# else:
+					# 	c.sendChatMessage("/msg %s Sorry, I've failed to automatically promote you. Please see a mod." % chat['userId'])
 				elif re.match(Data.sendCarePackage, chat['text']):
 					if chat['userId'] in Data.carePackageWhitelist:
 						logging.info("Attempting to send care package to %s request by %s" % (re.match(Data.sendCarePackage, chat['text']).group(1), chat['userName']))
@@ -274,7 +275,7 @@ def process(s, c, counter):
 						c.sendChatMessage("/w %s You are not authorized to send care packages. This incident will be reported." % chat['userId'])
 				else:
 					# No matching command was found, inform the player
-					c.sendChatMessage("/msg %s Oops, I didn't recognize what you wanted. Try again, or type !help in clan chat to receive a list of commands to use." % chat["userName"])
+					c.sendChatMessage("/msg %s Oops, I didn't recognize what you wanted. Try again, or type !help in clan chat to receive a list of commands to use." % chat["userId"])
 			else:
 				# If FaxBot, then acknowledge the fax completion.
 				if chat["userId"] == 2194132:
