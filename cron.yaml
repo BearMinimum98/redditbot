@@ -1,16 +1,16 @@
 cron:
  - description: Check for rolling
-   schedule: every 10 minutes from 5:40 to 5:29
+   schedule: every 10 minutes from 3:40 to 3:29
    url: /task/
  - description: Breakfast
-   schedule: every day 5:45
+   schedule: every day 3:45
    url: /breakfast/
  - description: Flush memcache
-   schedule: every day 5:30
+   schedule: every day 3:30
    url: /flush/
  - description: Accept new members to clan
-   schedule: every 10 minutes from 5:40 to 5:29
+   schedule: every 10 minutes from 3:40 to 3:29
    url: /clanapps/
  - description: Fix up usernames
-   schedule: every day 5:50
+   schedule: every day 3:50
    url: /fixup/
