@@ -89,7 +89,7 @@ def incrementCounter(chat, counter):
 
 def counterProcess(c, counter):
 	for keyName in counter.keys():
-		if counter[keyName.lower()] > 20:
+		if counter[keyName.lower()] > 100:
 			logging.warn("Baleeting %s for command spam" % keyName)
 			c.sendChatMessage("/baleet %s" % keyName)
 			if db.get("SELECT * FROM Player WHERE userName='%s'" % keyName.lower()) is None:
@@ -438,12 +438,12 @@ class MainHandler(webapp2.RequestHandler):
 		s = Session()
 		login(s)
 		c = ChatManager(s)
-		for i in range(0, 13):
+		for i in range(0, 120):
 			startTime = time.time()
 			process(s, c, commandCounter)
 			counterProcess(c, commandCounter)
 			endTime = time.time()
-			if i != 12 and endTime - startTime < 5:
+			if i != 119 and endTime - startTime < 5:
 				time.sleep(5 - (endTime - startTime))
 
 app = webapp2.WSGIApplication([('/', MainHandler)])
