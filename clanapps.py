@@ -19,6 +19,6 @@ class MainHandler(webapp2.RequestHandler):
 			logging.debug("adding %s" % userId)
 			a = AddPlayerToClanRequest(s, userId)
 			logging.debug("adding %s is a %s" % (userId, a.doRequest()))
-			msg = SendMessageRequest(s, {'userId': userId, 'text': "You have been accepted into Reddit United. Please read clan rules in the clan forums, under the subforum \"Clan Rules.\"\nMake sure to join us in clan chat as well! /listen clan (or) /chat clan\n\nPlease do not reply to this message. This is an automated response."})
+			msg = SendMessageRequest(s, {'userId': userId, 'text': "You have been accepted into Reddit United. Please read clan rules in the clan forums, under the subforum \"Clan Rules.\" We're telling you this because as a Normal Member (your current rank), you have 0 (ZERO) privileges (Yes, NO stash, NO dungeon), and the only way to be promoted is reading the rules C-A-R-E-F-U-L-L-Y! If you don't read them, we'll know. Oh, yes we'll know, all right.\nMake sure to join us in clan chat as well! Type in \"/listen clan\" (or) \"/chat clan\" into the chat box.\n\nPlease do not reply to this message. This is an automated response."})
 			msg.doRequest()
 app = webapp2.WSGIApplication([('/clanapps/', MainHandler)])

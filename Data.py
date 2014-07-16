@@ -4,7 +4,7 @@ class Data:
 	PASSWORD = "Butts420"
 	playerBlacklist = []
 	diceRoll = '^[rR]oll 1[dD](([1-9])([0-9]?)+)(((?i)k|m)?) in (clan)'
-	fax = '^!fax (.*)( -hic-)?$'
+	fax = '^!fax (.*?)( -hic-)?$'
 	loveMe = '((?i)I love you)(!)?'
 	helpMe = "^!help"
 	pickup = "^!sexbot"
@@ -16,7 +16,7 @@ class Data:
 	customTriggers = {
 		"iamcaptaindean": "More like, YouAreCaptainButt",
 		"iamcaptainbutt": "More like, IamCaptainDea- wait a sec...",
-	    "dagger32304": "I'm not fat, I'm fluffy!"
+		"dagger32304": "I'm not fat, I'm fluffy!"
 	}
 	kill = "^!kill (.*)( -hic-)?"
 	iq = "^!iq"
@@ -33,12 +33,13 @@ class Data:
 	arrow = "^((?i)arrow( me)?[\.\!\?]?)$"
 	arrowOther = "^((?i)arrow) (.*)"
 	parseFax = "FaxBot has copied a (.*) into your clan's Fax Machine"
-	setFlag = "^!setflag ['\"](.*)['\"] (.*) (.*)( -hic-)?$"
-	getFlag = "^!getflag ['\"](.*)['\"] (.*)( -hic-)?$"
-	setRank = "^!setrank (.*) (.*)( -hic-)?$"
-	whitelist = "^!whitelist (.*)( -hic-)?$"
+	setFlag = "^!setflag ['\"](.*)['\"] (.*) (.*?)( -hic-)?$"
+	getFlag = "^!getflag ['\"](.*)['\"] (.*?)( -hic-)?$"
+	setRank = "^!setrank (.*) (.*?)( -hic-)?$"
+	whitelist = "^!whitelist (.*?)( -hic-)?$"
+	points = "^!clanpoints (.*?)( -hic-)?$"
 	ignoreMe = "^!ignoreme"
-	executeCommand = "^!execute (.*)( -hic-)?$"
+	executeCommand = "^!execute (.*?)( -hic-)?$"
 	clanMemberBack = "^((?i)back( -hic-)?)$"
 	clanMemberHi = "^((?i)(hello|hi|hiya|hello clan|hey clan|hey\, clan|hello all|hey|heya|hi y\'all|howdy|hai|yo|ahoy|g\'day|sup|\'sup|hi there)[\.\!\?]?( -hic-)?)$"
 	clanMemberLeave = "^((?i)(i\'m out|bye|goodbye|gtg|later)[\?\.\!]?( -hic-)?)$"
