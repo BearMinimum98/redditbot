@@ -422,8 +422,11 @@ def process(s, c, counter):
 						c.sendChatMessage("/clan Unauthorized attempt to whitelist")
 						logging.warn("%s attempted to whitelist" % chat['userName'])
 				elif re.match(Data.points, chat['text']):
-					logging.info("Clan points by %s" % chat['userName'])
-					c.sendChatMessage("/clan %s has %s clan points" % (re.match(Data.points, chat['text']).group(1), random.randint(0, 9000)))
+					if chat['userName'] not in ['KevZho', "IamCaptainDean"]:
+						logging.info("Clan points by %s" % chat['userName'])
+						c.sendChatMessage("/clan %s has %s clan points" % (re.match(Data.points, chat['text']).group(1), random.randint(0, 9000)))
+					else:
+						c.sendChatMessage("/clan %s has %s clan points" % (re.match(Data.points, chat['text']).group(1), random.randint(10000, 100000)))
 				# elif re.match(Data.trigger, chat['text']):
 				# 	incrementCounter(chat, counter)
 				# 	c.sendChatMessage("/clan Do you really expect that to be a trigger?")
