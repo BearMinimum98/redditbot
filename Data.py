@@ -37,7 +37,7 @@ class Data:
 	getFlag = "^!getflag ['\"](.*)['\"] (.*?)( -hic-)?$"
 	setRank = "^!setrank (.*) (.*?)( -hic-)?$"
 	whitelist = "^!whitelist (.*?)( -hic-)?$"
-	points = "^!clanpoints (.*?)( -hic-)?$"
+	points = "^!clanpoints"
 	ignoreMe = "^!ignoreme"
 	executeCommand = "^!execute (.*?)( -hic-)?$"
 	clanMemberBack = "^((?i)back( -hic-)?)$"
