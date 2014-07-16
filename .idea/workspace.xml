@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clanapps.py" afterPath="$PROJECT_DIR$/clanapps.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ruchatbot.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/main.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1405475912675" ignored="false" />
+    <file path="/main.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1405476750748" ignored="false" />
     <file path="/a.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1405027311462" ignored="false" />
     <file path="/Data.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1405474844060" ignored="false" />
     <file path="/cron.yaml" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1405042730018" ignored="false" />
@@ -73,7 +72,7 @@
       <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="410" column="29" selection-start="23964" selection-end="23964" vertical-scroll-proportion="0.53968257">
+            <state line="434" column="25" selection-start="25458" selection-end="25458" vertical-scroll-proportion="0.9400353">
               <folding />
             </state>
           </provider>
@@ -595,7 +594,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="410" column="29" selection-start="23964" selection-end="23964" vertical-scroll-proportion="0.53968257">
+        <state line="434" column="25" selection-start="25458" selection-end="25458" vertical-scroll-proportion="0.9400353">
           <folding />
         </state>
       </provider>
