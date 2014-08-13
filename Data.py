@@ -18,7 +18,7 @@ class Data:
 		"iamcaptainbutt": "More like, IamCaptainDea- wait a sec...",
 		"dagger32304": "I'm not fat, I'm fluffy!"
 	}
-	kill = "^!kill (.*)( -hic-)?"
+	kill = "^!kill (.*?)( -hic-)?"
 	iq = "^!iq"
 	sharknado = "(?i)^!sharknado"
 	sendCarePackage = "(?i)^package (.*)$"
@@ -33,9 +33,9 @@ class Data:
 	arrow = "^((?i)arrow( me)?[\.\!\?]?)$"
 	arrowOther = "^((?i)arrow) (.*)"
 	parseFax = "FaxBot has copied a (.*) into your clan's Fax Machine"
-	setFlag = "^!setflag ['\"](.*)['\"] (.*) (.*?)( -hic-)?$"
-	getFlag = "^!getflag ['\"](.*)['\"] (.*?)( -hic-)?$"
-	setRank = "^!setrank (.*) (.*?)( -hic-)?$"
+	setFlag = "^!setflag ['\"](.*?)['\"] (.*?) (.*?)( -hic-)?$"
+	getFlag = "^!getflag ['\"](.*?)['\"] (.*?)( -hic-)?$"
+	setRank = "^!setrank (.*?) (.*?)( -hic-)?$"
 	whitelist = "^!whitelist (.*?)( -hic-)?$"
 	points = "^!clanpoints"
 	ignoreMe = "^!ignoreme"
