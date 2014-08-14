@@ -192,40 +192,48 @@ def process(s, c, counter):
 				# 	logging.debug("sending love back at %s" % chat['userName'])
 				# 	c.sendChatMessage("/msg %s Awww... I love you back!" % chat["userId"])
 				elif re.match(Data.arrow, chat['text']):
-					logging.debug("hitting %s with a time's arrow" % chat['userId'])
-					player = db.GqlQuery("SELECT * FROM Player WHERE userName = '%s'" % chat['userName'].lower()).get()
-					if player is None:
-						player = Player(userName=chat['userName'].lower(), gotPackage=False, wangsUsed=0, arrowsUsed=False)
-					if not player.arrowsUsed:
-						arrow = CursePlayerRequest(s, chat["userId"], 4939)
-						try:
-							arrow.doRequest()
-							player.arrowsUsed = True
-							player.put()
-							c.sendChatMessage("/msg %s Hitting you with a time's arrow, straight to the knee." % chat["userId"])
-						except:
-							logging.error("Out of arrows/error!")
-							c.sendChatMessage("/msg %s Oops, looks like I'm out of arrows :'( (Or you're in Ronin/HC, or you've been hit already)" % chat["userId"])
+					if chat['userId'] not in [2094466, 1589628]:
+						logging.debug("hitting %s with a time's arrow" % chat['userId'])
+						player = db.GqlQuery("SELECT * FROM Player WHERE userName = '%s'" % chat['userName'].lower()).get()
+						if player is None:
+							player = Player(userName=chat['userName'].lower(), gotPackage=False, wangsUsed=0, arrowsUsed=False)
+						if not player.arrowsUsed:
+							arrow = CursePlayerRequest(s, chat["userId"], 4939)
+							try:
+								arrow.doRequest()
+								player.arrowsUsed = True
+								player.put()
+								c.sendChatMessage("/msg %s Hitting you with a time's arrow, straight to the knee." % chat["userId"])
+							except:
+								logging.error("Out of arrows/error!")
+								c.sendChatMessage("/msg %s Oops, looks like I'm out of arrows :'( (Or you're in Ronin/HC, or you've been hit already)" % chat["userId"])
+						else:
+							logging.warn("%s hit limit for time's arrow" % chat['userName'])
+							c.sendChatMessage("/msg %s You have used your arrow for the day." % chat['userId'])
 					else:
-						logging.warn("%s hit limit for time's arrow" % chat['userName'])
-						c.sendChatMessage("/msg %s You have used your arrow for the day." % chat['userId'])
+						logging.warn("%s is blacklisted from arrows" % chat['userName'])
+						c.sendChatMessage("/msg %s You have been blacklisted from using time's arrows." % chat['userId'])
 				elif re.match(Data.arrowOther, chat['text']):
-					player = db.GqlQuery("SELECT * FROM Player WHERE userName = '%s'" % chat['userName'].lower()).get()
-					if player is None:
-						player = Player(userName=chat['userName'].lower(), gotPackage=False, wangsUsed=0, arrowsUsed=False)
-					if not player.arrowsUsed:
-						logging.debug("hitting %s with a time's arrow. request by %s" % (re.match(Data.arrowOther, chat['text']).group(2), chat['userName']))
-						arrow = CursePlayerRequest(s, re.match(Data.arrowOther, chat['text']).group(2), 4939)
-						try:
-							arrow.doRequest()
-							player.arrowsUsed = True
-							player.put()
-							c.sendChatMessage("/msg %s %s has been hit with an arrow." % (chat["userId"], re.match(Data.arrowOther, chat['text']).group(2)))
-						except:
-							c.sendChatMessage("/msg %s An error occurred. Please try again later." % chat["userId"])
+					if chat['userId'] not in [2094466, 1589628]:
+						player = db.GqlQuery("SELECT * FROM Player WHERE userName = '%s'" % chat['userName'].lower()).get()
+						if player is None:
+							player = Player(userName=chat['userName'].lower(), gotPackage=False, wangsUsed=0, arrowsUsed=False)
+						if not player.arrowsUsed:
+							logging.debug("hitting %s with a time's arrow. request by %s" % (re.match(Data.arrowOther, chat['text']).group(2), chat['userName']))
+							arrow = CursePlayerRequest(s, re.match(Data.arrowOther, chat['text']).group(2), 4939)
+							try:
+								arrow.doRequest()
+								player.arrowsUsed = True
+								player.put()
+								c.sendChatMessage("/msg %s %s has been hit with an arrow." % (chat["userId"], re.match(Data.arrowOther, chat['text']).group(2)))
+							except:
+								c.sendChatMessage("/msg %s An error occurred. Please try again later." % chat["userId"])
+						else:
+							logging.warn("%s hit limit for time's arrow" % chat['userName'])
+							c.sendChatMessage("/msg %s You have used your arrow for the day." % chat['userId'])
 					else:
-						logging.warn("%s hit limit for time's arrow" % chat['userName'])
-						c.sendChatMessage("/msg %s You have used your arrow for the day." % chat['userId'])
+						logging.warn("%s is blacklisted from arrows" % chat['userName'])
+						c.sendChatMessage("/msg %s You have been blacklisted from using time's arrows." % chat['userId'])
 				elif re.match(Data.upgradeStatus, chat['text']):
 					c.sendChatMessage("/msg %s Rank upgrades have been moved to RedditRankBot. Please PM him instead." % chat['userId'])
 					# # TODO: rewrite to use FindWhitelistRequest in order to not accidentally demote a player
@@ -244,7 +252,7 @@ def process(s, c, counter):
 						msgBody = {
 							"userId": re.match(Data.sendCarePackage, chat['text']).group(1),
 							"text": "Welcome to KoL and Reddit United! Here's some stuff to help you out. The lump of coal is for making an awesome weapon. Just smith it with your classes beginner weapon! Be sure to use those Flaskfull's for an additional buff!\nThis newbie package was requested by %s for you" % chat["userName"],
-							"items": [{"id": 7021, "quantity": 1}, {"id": 7022,	"quantity": 1},	{"id": 7005, "quantity": 1}, {"id": 196, "quantity": 3}, {"id": 6970, "quantity": 1}, {"id": 7004, "quantity": 5	}],	"meat": 1000
+							"items": [{"id": 7021, "quantity": 1}, {"id": 7022,	"quantity": 1},	{"id": 7005, "quantity": 1}, {"id": 196, "quantity": 3}, {"id": 6970, "quantity": 1}, {"id": 7004, "quantity": 5}],	"meat": 1000
 						}
 						if playerSearch is None:
 							# send a package, update the datastore
@@ -254,7 +262,7 @@ def process(s, c, counter):
 								Player(userName=re.match(Data.sendCarePackage, chat['text']).group(1).lower(), gotPackage=True, wangsUsed=0, arrowsUsed=False).put()
 								c.sendChatMessage("/w %s %s has been sent a care package." % (chat['userId'], re.match(Data.sendCarePackage, chat['text']).group(1)))
 							except:
-								c.sendChatMessage("/w %s Failed to send. Username may be too long and KoL chat made a space between it. Please send one manually" % chat['userName'])
+								c.sendChatMessage("/w %s Failed to send. Username may be too long and KoL chat made a space between it. Please send one manually. (This is a general fail message, this could also mean one ingredient of the package is missing)" % chat['userName'])
 						else:
 							if playerSearch.gotPackage is False:
 								c.sendChatMessage("/w %s Sending a care package..." % chat["userId"])
