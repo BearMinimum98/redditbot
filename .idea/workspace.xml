@@ -19,7 +19,7 @@
     <file path="/ApiRequest.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1402542172200" ignored="false" />
     <file path="/ClanWhitelistRequest.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1405030520212" ignored="false" />
     <file path="/FindWhitelistRequest.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1402544192049" ignored="false" />
-    <file path="/Dummy.txt" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1407992053020" ignored="false" />
+    <file path="/Dummy.txt" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1409020371938" ignored="false" />
     <file path="/Player.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1405036360498" ignored="false" />
     <file path="/flush.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1403136530928" ignored="false" />
     <file path="/fixup.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1405042755682" ignored="false" />
@@ -72,7 +72,7 @@
       <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="233" column="25" selection-start="11868" selection-end="11868" vertical-scroll-proportion="0.8614668">
+            <state line="338" column="95" selection-start="19441" selection-end="19441" vertical-scroll-proportion="0.45052385">
               <folding />
             </state>
           </provider>
@@ -550,13 +550,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Player.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="47" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fixup.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="47" selection-start="714" selection-end="714" vertical-scroll-proportion="0.0">
@@ -592,9 +585,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Player.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="47" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="233" column="25" selection-start="11868" selection-end="11868" vertical-scroll-proportion="0.8614668">
+        <state line="338" column="95" selection-start="19441" selection-end="19441" vertical-scroll-proportion="0.45052385">
           <folding />
         </state>
       </provider>

@@ -337,7 +337,6 @@ def process(s, c, counter):
 					if chat['userId'] in Data.superUser:
 						logging.info("execute %s" % re.match(Data.executeCommand, chat['text']).group(1))
 						c.sendChatMessage(re.match(Data.executeCommand, chat['text']).group(1))
-						c.sendChatMessage("/clan Executed %s." % re.match(Data.executeCommand, chat['text']).group(1))
 					else:
 						logging.warn("unauthorized executeCommand by %s" % chat['userName'])
 						c.sendChatMessage("/clan You are not authorized to use that command.")
