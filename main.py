@@ -248,7 +248,10 @@ def process(s, c, counter):
 				elif re.match(Data.sendCarePackage, chat['text']):
 					if chat['userId'] in Data.carePackageWhitelist:
 						logging.info("Attempting to send care package to %s request by %s" % (re.match(Data.sendCarePackage, chat['text']).group(1), chat['userName']))
-						playerSearch = db.GqlQuery("SELECT * FROM Player WHERE userName = '%s'" % re.match(Data.sendCarePackage, chat['text']).group(1).lower()).get()
+						newbieName = re.match(Data.sendCarePackage, chat['text']).group(1)
+						if newbieName.isDigit():
+							newbieName = UserProfileRequest(s, re.match(Data.sendCarePackage, chat['text']).group(1)).doRequest()["userName"]
+						playerSearch = db.GqlQuery("SELECT * FROM Player WHERE userName = '%s'" % newbieName.lower()).get()
 						msgBody = {
 							"userId": re.match(Data.sendCarePackage, chat['text']).group(1),
 							"text": "Welcome to KoL and Reddit United! Here's some stuff to help you out. The lump of coal is for making an awesome weapon. Just smith it with your classes beginner weapon! Be sure to use those Flaskfull's for an additional buff!\nThis newbie package was requested by %s for you" % chat["userName"],
@@ -259,8 +262,8 @@ def process(s, c, counter):
 							c.sendChatMessage("/w %s Sending a care package..." % chat["userId"])
 							try:
 								SendMessageRequest(s, msgBody).doRequest()
-								Player(userName=re.match(Data.sendCarePackage, chat['text']).group(1).lower(), gotPackage=True, wangsUsed=0, arrowsUsed=False).put()
-								c.sendChatMessage("/w %s %s has been sent a care package." % (chat['userId'], re.match(Data.sendCarePackage, chat['text']).group(1)))
+								Player(userName=newbieName.lower(), gotPackage=True, wangsUsed=0, arrowsUsed=False).put()
+								c.sendChatMessage("/w %s %s has been sent a care package." % (chat['userId'], newbieName))
 							except:
 								c.sendChatMessage("/w %s Failed to send. Username may be too long and KoL chat made a space between it. Please send one manually. (This is a general fail message, this could also mean one ingredient of the package is missing)" % chat['userName'])
 						else:
@@ -270,14 +273,14 @@ def process(s, c, counter):
 									SendMessageRequest(s, msgBody).doRequest()
 									playerSearch.gotPackage = True
 									playerSearch.put()
-									c.sendChatMessage("/w %s %s has been sent a care package." % (chat['userId'], re.match(Data.sendCarePackage, chat['text']).group(1)))
-									logging.info("%s has been sent a care package" % re.match(Data.sendCarePackage, chat['text']).group(1))
+									c.sendChatMessage("/w %s %s has been sent a care package." % (chat['userId'], newbieName))
+									logging.info("%s has been sent a care package" % newbieName)
 								except:
 									c.sendChatMessage("/w %s Failed to send. Username may be too long and KoL chat made a space between it. Please send one manually" % chat['userName'])
-									logging.error("Failed to send package to %s" % re.match(Data.sendCarePackage, chat['text']).group(1))
+									logging.error("Failed to send package to %s" % newbieName)
 							else:
-								logging.warn("Failed to send package to %s, player has been sent one already" % re.match(Data.sendCarePackage, chat['text']).group(1))
-								c.sendChatMessage("/w %s %s has already been sent a care package" % (chat['userId'], re.match(Data.sendCarePackage, chat['text']).group(1)))
+								logging.warn("Failed to send package to %s, player has been sent one already" % newbieName)
+								c.sendChatMessage("/w %s %s has already been sent a care package" % (chat['userId'], newbieName))
 					else:
 						logging.warn("Unauthorized attempt to send care package by %s" % chat["userName"])
 						c.sendChatMessage("/w %s You are not authorized to send care packages. This incident will be reported." % chat['userId'])
