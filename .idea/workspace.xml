@@ -19,7 +19,7 @@
     <file path="/ApiRequest.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1402542172200" ignored="false" />
     <file path="/ClanWhitelistRequest.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1405030520212" ignored="false" />
     <file path="/FindWhitelistRequest.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1402544192049" ignored="false" />
-    <file path="/Dummy.txt" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1409364732778" ignored="false" />
+    <file path="/Dummy.txt" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1409599761698" ignored="false" />
     <file path="/Player.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1405036360498" ignored="false" />
     <file path="/flush.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1403136530928" ignored="false" />
     <file path="/fixup.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1405042755682" ignored="false" />
@@ -72,7 +72,7 @@
       <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="269" column="41" selection-start="14798" selection-end="14798" vertical-scroll-proportion="0.48394495">
+            <state line="165" column="57" selection-start="7167" selection-end="7167" vertical-scroll-proportion="0.08034611">
               <folding />
             </state>
           </provider>
@@ -290,16 +290,16 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../rurankbot" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="163" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="837" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="837" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="837" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="163" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="161" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -634,13 +634,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Player.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="47" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kol/request/UserProfileRequest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="79" selection-start="437" selection-end="437" vertical-scroll-proportion="0.0">
@@ -648,9 +641,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Player.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="47" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="269" column="41" selection-start="14798" selection-end="14798" vertical-scroll-proportion="0.48394495">
+        <state line="165" column="57" selection-start="7167" selection-end="7167" vertical-scroll-proportion="0.08034611">
           <folding />
         </state>
       </provider>

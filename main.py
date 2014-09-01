@@ -192,7 +192,7 @@ def process(s, c, counter):
 				# 	logging.debug("sending love back at %s" % chat['userName'])
 				# 	c.sendChatMessage("/msg %s Awww... I love you back!" % chat["userId"])
 				elif re.match(Data.arrow, chat['text']):
-					if chat['userId'] not in [2094466, 1589628]:
+					if chat['userId'] not in [1589628]:
 						logging.debug("hitting %s with a time's arrow" % chat['userId'])
 						player = db.GqlQuery("SELECT * FROM Player WHERE userName = '%s'" % chat['userName'].lower()).get()
 						if player is None:
