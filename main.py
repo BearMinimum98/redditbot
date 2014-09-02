@@ -214,7 +214,7 @@ def process(s, c, counter):
 						logging.warn("%s is blacklisted from arrows" % chat['userName'])
 						c.sendChatMessage("/msg %s You have been blacklisted from using time's arrows." % chat['userId'])
 				elif re.match(Data.arrowOther, chat['text']):
-					if chat['userId'] not in [2094466, 1589628]:
+					if chat['userId'] not in [1589628]:
 						player = db.GqlQuery("SELECT * FROM Player WHERE userName = '%s'" % chat['userName'].lower()).get()
 						if player is None:
 							player = Player(userName=chat['userName'].lower(), gotPackage=False, wangsUsed=0, arrowsUsed=False)
