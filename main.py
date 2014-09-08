@@ -362,7 +362,7 @@ def process(s, c, counter):
 				elif re.match(Data.optimal, chat['text']):
 					incrementCounter(chat, counter)
 					logging.debug("acknowledge optimal by %s" % chat['userName'])
-					if chat['userName'].lower() not in ["kevzho", "basbryan", "sweeepss"]:
+					if chat['userName'].lower() not in ["kevzho", "basbryan", "sweeepss", "hikaru yami"]:
 						c.sendChatMessage("/clan No, %s, you are not optimal enough for Kev" % chat['userName'])
 					else:
 						c.sendChatMessage("/clan Yes, %s, you are optimal." % chat["userName"])
