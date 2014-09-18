@@ -249,7 +249,7 @@ def process(s, c, counter):
 					if chat['userId'] in Data.carePackageWhitelist:
 						logging.info("Attempting to send care package to %s request by %s" % (re.match(Data.sendCarePackage, chat['text']).group(1), chat['userName']))
 						newbieName = re.match(Data.sendCarePackage, chat['text']).group(1)
-						if newbieName.isDigit():
+						if newbieName.isdigit():
 							newbieName = UserProfileRequest(s, re.match(Data.sendCarePackage, chat['text']).group(1)).doRequest()["userName"]
 						playerSearch = db.GqlQuery("SELECT * FROM Player WHERE userName = '%s'" % newbieName.lower()).get()
 						msgBody = {
