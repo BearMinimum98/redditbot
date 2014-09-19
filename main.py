@@ -452,7 +452,7 @@ class MainHandler(webapp2.RequestHandler):
 		s = Session()
 		login(s)
 		c = ChatManager(s)
-		for i in range(0, 120):
+		for i in range(0, 121):
 			startTime = time.time()
 			process(s, c, commandCounter)
 			counterProcess(c, commandCounter)
