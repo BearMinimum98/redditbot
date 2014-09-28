@@ -19,7 +19,7 @@
     <file path="/ApiRequest.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1402542172200" ignored="false" />
     <file path="/ClanWhitelistRequest.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1405030520212" ignored="false" />
     <file path="/FindWhitelistRequest.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1402544192049" ignored="false" />
-    <file path="/Dummy.txt" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1411085702804" ignored="false" />
+    <file path="/Dummy.txt" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1411945023253" ignored="false" />
     <file path="/Player.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1405036360498" ignored="false" />
     <file path="/flush.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1403136530928" ignored="false" />
     <file path="/fixup.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1405042755682" ignored="false" />
@@ -72,7 +72,7 @@
       <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="454" column="29" selection-start="26125" selection-end="26125" vertical-scroll-proportion="0.7031432">
+            <state line="460" column="34" selection-start="26316" selection-end="26316" vertical-scroll-proportion="0.82188594">
               <folding />
             </state>
           </provider>
@@ -208,7 +208,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+    <navigator proportions="" version="1" splitterProportion="0.5">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -219,29 +219,7 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ruchatbot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ruchatbot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ruchatbot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
@@ -616,7 +594,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="454" column="29" selection-start="26125" selection-end="26125" vertical-scroll-proportion="0.7031432">
+        <state line="460" column="34" selection-start="26316" selection-end="26316" vertical-scroll-proportion="0.82188594">
           <folding />
         </state>
       </provider>
