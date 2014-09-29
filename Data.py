@@ -44,7 +44,7 @@ class Data:
 	clanMemberBack = "^((?i)back( -hic-)?)$"
 	clanMemberHi = "^((?i)(hello|hi|hiya|hello clan|hey clan|hey\, clan|hello all|hey|heya|hi y\'all|howdy|hai|yo|ahoy|g\'day|sup|\'sup|hi there)[\.\!\?]?( -hic-)?)$"
 	clanMemberLeave = "^((?i)(i\'m out|bye|goodbye|gtg|later)[\?\.\!]?( -hic-)?)$"
-	rigRoll = '^[rR])oll 1[dD](([1-9])([0-9]?)+)(((?i)k|m)?) in (clan) get (([1-9])([0-9]?)+)'
+	rigRoll = '^[rR]oll 1[dD](([1-9])([0-9]?)+)(((?i)k|m)?) in (clan) get (([1-9])([0-9]?)+)'
 	WANG_LIMIT = 5
 	helpText = '''Clan chat commands:
 !help - Sends help on RedditBot to your inbox
