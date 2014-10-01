@@ -149,6 +149,8 @@ def process(s, c, counter):
 						logging.warn("%s has hit limit for wang" % chat['userName'])
 						c.sendChatMessage("/msg %s You have used all 5 wangs for the day." % chat['userId'])
 				elif re.match(Data.rigRoll, chat['text']):
+					if chat['userId'] == 2413861 and re.match(Data.diceRoll, chat['text']).group(1) == 10:
+						c.sendChatMessage("Rolling 1D10 for Reddit United gives 4")
 					if chat['userId'] == 2434890:
 						if re.match(Data.rigRoll, chat['text']).group(5) != "k" and re.match(Data.rigRoll, chat['text']).group(5) != "m":
 							logging.debug("Rolling normally RIGGED")
