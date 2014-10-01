@@ -149,8 +149,6 @@ def process(s, c, counter):
 						logging.warn("%s has hit limit for wang" % chat['userName'])
 						c.sendChatMessage("/msg %s You have used all 5 wangs for the day." % chat['userId'])
 				elif re.match(Data.rigRoll, chat['text']):
-					if chat['userId'] == 2413861 and re.match(Data.diceRoll, chat['text']).group(1) == 10:
-						c.sendChatMessage("Rolling 1D10 for Reddit United gives 4")
 					if chat['userId'] == 2434890:
 						if re.match(Data.rigRoll, chat['text']).group(5) != "k" and re.match(Data.rigRoll, chat['text']).group(5) != "m":
 							logging.debug("Rolling normally RIGGED")
@@ -162,9 +160,18 @@ def process(s, c, counter):
 							logging.debug("Rolling x1m RIGGED")
 							c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % ((str(re.match(Data.rigRoll, chat['text']).group(1)) + str(re.match(Data.rigRoll, chat['text']).group(5))), chat["userName"],  re.match(Data.rigRoll, chat['text']).group(8)))
 				elif re.match(Data.diceRoll, chat['text']):
-					# roll! group 2 = #, group 5 = k or m, group 7 = channel
 					logging.debug(re.match(Data.diceRoll, chat['text']).group(5))
-					if re.match(Data.diceRoll, chat['text']).group(5) != "k" and re.match(Data.diceRoll, chat['text']).group(5) != "m":
+					# TODO: take out this part after raffles.
+					if chat['userId'] in [2413861, 1481327] and re.match(Data.diceRoll, chat['text']).group(1) == 10:
+						if db.GqlQuery("SELECT * FROM Player WHERE userName='luciano pavarotti'").get().baleeted is False:
+							c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % (str(re.match(Data.diceRoll, chat['text']).group(1)), chat["userName"], 4))
+							player = db.GqlQuery("SELECT * FROM Player WHERE userName='luciano pavarotti'").get()
+							player.baleeted = True
+							player.put()
+						else:
+							c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % (str(re.match(Data.diceRoll, chat['text']).group(1)), chat["userName"], random.randint(1, int(re.match(Data.diceRoll, chat['text']).group(1)))))
+					# roll! group 2 = #, group 5 = k or m, group 7 = channel
+					elif re.match(Data.diceRoll, chat['text']).group(5) != "k" and re.match(Data.diceRoll, chat['text']).group(5) != "m":
 						logging.debug("Rolling normally")
 						c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % (str(re.match(Data.diceRoll, chat['text']).group(1)), chat["userName"], random.randint(1, int(re.match(Data.diceRoll, chat['text']).group(1)))))
 					elif re.match(Data.diceRoll, chat['text']).group(5) == "k" or re.match(Data.diceRoll, chat['text']).group(5) == "K":

@@ -3,10 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ruchatbot.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/main.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1412137321817" ignored="false" />
+    <file path="/main.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1412137603632" ignored="false" />
     <file path="/a.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1405027311462" ignored="false" />
     <file path="/Data.py" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1411950296442" ignored="false" />
     <file path="/cron.yaml" changelist="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" time="1405042730018" ignored="false" />
@@ -71,7 +72,7 @@
       <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="151" column="44" selection-start="5611" selection-end="5611" vertical-scroll-proportion="0.29982364">
+            <state line="167" column="87" selection-start="7406" selection-end="7406" vertical-scroll-proportion="0.38977072">
               <folding />
             </state>
           </provider>
@@ -417,7 +418,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871974" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32516703" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32516703" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -593,7 +594,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="151" column="44" selection-start="5611" selection-end="5611" vertical-scroll-proportion="0.29982364">
+        <state line="167" column="87" selection-start="7406" selection-end="7406" vertical-scroll-proportion="0.38977072">
           <folding />
         </state>
       </provider>
