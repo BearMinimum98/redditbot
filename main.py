@@ -264,7 +264,7 @@ def process(s, c, counter):
 						msgBody = {
 							"userId": re.match(Data.sendCarePackage, chat['text']).group(1),
 							"text": "Welcome to KoL and Reddit United! Here's some stuff to help you out. The lump of coal is for making an awesome weapon. Just smith it with your classes beginner weapon! Be sure to use those Flaskfull's for an additional buff!\nThis newbie package was requested by %s for you" % chat["userName"],
-							"items": [{"id": 7021, "quantity": 1}, {"id": 7022,	"quantity": 1},	{"id": 7005, "quantity": 1}, {"id": 196, "quantity": 3}, {"id": 6970, "quantity": 1}, {"id": 7004, "quantity": 5}],	"meat": 1000
+							"items": [{"id": 143, "quantity": 1}, {"id": 591,	"quantity": 1},	{"id": 1450, "quantity": 1}, {"id": 196, "quantity": 3}, {"id": 2402, "quantity": 10}, {"id": 7071, "quantity": 10}, {"id": 7072, "quantity": 10}],	"meat": 1000
 						}
 						if playerSearch is None:
 							# send a package, update the datastore

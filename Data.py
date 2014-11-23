@@ -26,7 +26,7 @@ class Data:
 	superUser = [2434890, 2167442, 2479004]
 	adminPlus = [2434890, 1481327, 2371834]; adminPlus.extend(superUser)
 	modPlus = [1871066, 2210210, 2344873, 2315738, 2469228];modPlus.extend(adminPlus)
-	karmanautPlus = [2479004, 2383225, 1972092, 2343766];karmanautPlus.extend(modPlus)
+	karmanautPlus = [2479004, 2383225, 1972092, 2343766, 2441215];karmanautPlus.extend(modPlus)
 	clanBlacklist = [2288943]
 	upgradeStatus = "^[0-9]{4}$"
 	wang = "^((?i)wang( me)?(!)?)$"
