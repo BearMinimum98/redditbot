@@ -454,7 +454,8 @@ def process(s, c, counter):
 					else:
 						c.sendChatMessage("/clan %s" % random.choice(Data.noTriggers).format(chat['userName'], re.match("^!([^ ]+)(.*)?$", chat['text']).group(1), ordinal(random.randint(1, 100))))
 				c.sendChatMessage("/talkie %s: %s" % (chat['userName'], chat["text"]))
-
+			if "channel" in chat and chat["channel"] == "talkie" and chat["userId"] not in Data.playerBlacklist:
+				c.sendChatMessage("/clan %s: %s" % (chat['userName'], chat["text"]))
 
 class MainHandler(webapp2.RequestHandler):
 	def post(self):
