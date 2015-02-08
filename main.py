@@ -453,6 +453,7 @@ def process(s, c, counter):
 						c.sendChatMessage(Data.customTriggers[re.match("^!([^ ]+)(.*)?$", chat['text']).group(1).lower()])
 					else:
 						c.sendChatMessage("/clan %s" % random.choice(Data.noTriggers).format(chat['userName'], re.match("^!([^ ]+)(.*)?$", chat['text']).group(1), ordinal(random.randint(1, 100))))
+				c.sendChatMessage("/talkie %s: %s" % (chat['userName'], chat["text"]))
 
 
 class MainHandler(webapp2.RequestHandler):
