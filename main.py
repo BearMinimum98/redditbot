@@ -215,7 +215,7 @@ def process(s, c, counter):
 								c.sendChatMessage("/msg %s Hitting you with a time's arrow, straight to the knee." % chat["userId"])
 							except:
 								logging.error("Out of arrows/error!")
-								c.sendChatMessage("/msg %s Oops, looks like I'm out of arrows :'( (Or you're in Ronin/HC, or you've been hit already)" % chat["userId"])
+								c.sendChatMessage("/msg %s Oops, looks like I'm out of arrows :'( (Or you're in Ronin/HC, or you've been hit already by someone else)" % chat["userId"])
 						else:
 							logging.warn("%s hit limit for time's arrow" % chat['userName'])
 							c.sendChatMessage("/msg %s You have used your arrow for the day." % chat['userId'])
