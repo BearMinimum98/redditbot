@@ -453,7 +453,7 @@ def process(s, c, counter):
 						c.sendChatMessage(Data.customTriggers[re.match("^!([^ ]+)(.*)?$", chat['text']).group(1).lower()])
 					else:
 						c.sendChatMessage("/clan %s" % random.choice(Data.noTriggers).format(chat['userName'], re.match("^!([^ ]+)(.*)?$", chat['text']).group(1), ordinal(random.randint(1, 100))))
-				if chat['text'].len() < (200 - chat['userName'].len() - 2):
+				if len(chat['text']) < (200 - len(chat['userName']) - 2):
 					c.sendChatMessage("/talkie %s: %s" % (chat['userName'], chat["text"]))
 				else:
 					# break it up here, stopped the bug for now by just not sending messages if they are longer than 200 chars. a more long term solution would require changes to the pykol api itself.
