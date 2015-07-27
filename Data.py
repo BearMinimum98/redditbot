@@ -22,11 +22,11 @@ class Data:
 	iq = "^!iq"
 	sharknado = "(?i)^!sharknado"
 	sendCarePackage = "(?i)^package (.*)$"
-	carePackageWhitelist = [2434890, 1481327, 2371834, 1871066, 2210210, 2344873, 2315738, 2479004, 1972092, 2343766, 2383225, 2491377, 2469228]
+	carePackageWhitelist = [2434890, 2344873, 2210210, 2479004, 2469228, 2467167, 2383225, 197209, 498276, 725347, 2500079, 2441215, 2662313, 524291, 2473196]
 	superUser = [2434890, 2167442, 2479004]
-	adminPlus = [2434890, 1481327, 2371834]; adminPlus.extend(superUser)
-	modPlus = [1871066, 2210210, 2344873, 2315738, 2469228];modPlus.extend(adminPlus)
-	karmanautPlus = [2479004, 2383225, 1972092, 2343766, 2441215];karmanautPlus.extend(modPlus)
+	adminPlus = [2210210, 2344873]; adminPlus.extend(superUser)
+	modPlus = [2469228, 2467167];modPlus.extend(adminPlus)
+	karmanautPlus = [2383225, 197209, 498276, 725347, 2500079, 2441215, 2662313, 524291, 2473196];karmanautPlus.extend(modPlus)
 	clanBlacklist = [2288943]
 	upgradeStatus = "^[0-9]{4}$"
 	wang = "^((?i)wang( me)?(!)?)$"
