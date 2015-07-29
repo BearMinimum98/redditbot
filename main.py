@@ -255,7 +255,7 @@ def process(s, c, counter):
 					# else:
 					# 	c.sendChatMessage("/msg %s Sorry, I've failed to automatically promote you. Please see a mod." % chat['userId'])
 				elif re.match(Data.sendCarePackage, chat['text']):
-					if chat['userId'] in Data.carePackageWhitelist:
+					if chat['userId'] in Data.karmanautPlus:
 						logging.info("Attempting to send care package to %s request by %s" % (re.match(Data.sendCarePackage, chat['text']).group(1), chat['userName']))
 						newbieName = re.match(Data.sendCarePackage, chat['text']).group(1)
 						if newbieName.isdigit():
