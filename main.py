@@ -152,7 +152,7 @@ def process(s, c, counter):
 					if chat['userId'] == 2434890:
 						if re.match(Data.rigRoll, chat['text']).group(5) != "k" and re.match(Data.rigRoll, chat['text']).group(5) != "m":
 							logging.debug("Rolling normally RIGGED")
-							c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % ((str(re.match(Data.rigRoll, chat['text']).group(1)) + str(re.match(Data.rigRoll, chat['text']).group(5))), chat["userName"], re.match(Data.rigRoll, chat['text']).group(8)))
+							c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % (str(re.match(Data.rigRoll, chat['text']).group(1)), chat["userName"], re.match(Data.rigRoll, chat['text']).group(8)))
 						elif re.match(Data.rigRoll, chat['text']).group(5) == "k" or re.match(Data.rigRoll, chat['text']).group(5) == "K":
 							logging.debug("Rolling x1000 RIGGED")
 							c.sendChatMessage("/clan Rolling 1D%s for %s gives %s" % ((str(re.match(Data.rigRoll, chat['text']).group(1)) + str(re.match(Data.rigRoll, chat['text']).group(5))), chat["userName"], re.match(Data.rigRoll, chat['text']).group(8)))
@@ -295,6 +295,7 @@ def process(s, c, counter):
 						c.sendChatMessage("/w %s You are not authorized to send care packages. This incident will be reported." % chat['userId'])
 				else:
 					# No matching command was found, inform the player
+					incrementCounter(chat, counter)
 					c.sendChatMessage("/msg %s Oops, I didn't recognize what you wanted. Try again, or type !help in clan chat to receive a list of commands to use." % chat["userId"])
 			else:
 				# If FaxBot, then acknowledge the fax completion.
@@ -438,16 +439,16 @@ def process(s, c, counter):
 						AddClannieToClanWhitelistRequest(s, re.match(Data.whitelist, chat['text']).group(1)).doRequest()
 						c.sendChatMessage("/clan Player added to whitelist.")
 					else:
-						c.sendChatMessage("/clan Unauthorized attempt to whitelist")
+						c.sendChatMessage("/clan Unauthorized attempt to whitelist.")
 						logging.warn("%s attempted to whitelist" % chat['userName'])
 				elif re.match(Data.points, chat['text']):
 					# logging.info("Clan points by %s" % chat['userName'])
 					# c.sendChatMessage("/clan %s has %s clan points" % (re.match(Data.points, chat['text']).group(1), random.randint(0, 9000)))
-					c.sendChatMessage("/clan Clan points are currently unavailable")
+					c.sendChatMessage("/clan Clan points are currently unavailable.")
 				# elif re.match(Data.trigger, chat['text']):
 				# 	incrementCounter(chat, counter)
 				# 	c.sendChatMessage("/clan Do you really expect that to be a trigger?")
-				elif re.match("!version", chat['text']):
+				elif re.match("^!version", chat['text']):
 					incrementCounter(chat, counter)
 					c.sendChatMessage("Version %s" % Data.version)
 				elif re.match("^!([^ ]+)(.*)?$", chat['text']):

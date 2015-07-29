@@ -1,6 +1,6 @@
 __author__ = 'Kevin'
 class Data:
-	version = "7.29.15.10.43"
+	version = "7.29.15.18.43"
 	USERNAME = "RedditBot/q"
 	PASSWORD = "Butts420"
 	playerBlacklist = []
