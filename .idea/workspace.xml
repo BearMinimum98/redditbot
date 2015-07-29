@@ -4,7 +4,6 @@
     <list default="true" id="c1e7a5d4-7f86-4d82-a8c6-621e1efa2dfb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data.py" afterPath="$PROJECT_DIR$/Data.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ruchatbot.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,19 +65,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Data.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Data.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="29" selection-start="59" selection-end="59" vertical-scroll-proportion="-0.68">
+            <state line="2" column="28" selection-start="58" selection-end="58" vertical-scroll-proportion="0.042027194">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="465" column="0" selection-start="27271" selection-end="27271" vertical-scroll-proportion="0.80504584">
+            <state line="451" column="66" selection-start="26274" selection-end="26274" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -171,8 +170,8 @@
         <option value="$PROJECT_DIR$/fixup.py" />
         <option value="$PROJECT_DIR$/cron.yaml" />
         <option value="$PROJECT_DIR$/clanapps.py" />
-        <option value="$PROJECT_DIR$/Data.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/Data.py" />
       </list>
     </option>
   </component>
@@ -669,16 +668,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Data.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="29" selection-start="59" selection-end="59" vertical-scroll-proportion="-0.68">
+        <state line="451" column="66" selection-start="26274" selection-end="26274" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/Data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="465" column="0" selection-start="27271" selection-end="27271" vertical-scroll-proportion="0.80504584">
+        <state line="2" column="28" selection-start="58" selection-end="58" vertical-scroll-proportion="0.042027194">
           <folding />
         </state>
       </provider>

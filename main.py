@@ -447,15 +447,15 @@ def process(s, c, counter):
 				# elif re.match(Data.trigger, chat['text']):
 				# 	incrementCounter(chat, counter)
 				# 	c.sendChatMessage("/clan Do you really expect that to be a trigger?")
+				elif re.match("!version", chat['text']):
+					incrementCounter(chat, counter)
+					c.sendChatMessage("Version %s" % Data.version)
 				elif re.match("^!([^ ]+)(.*)?$", chat['text']):
 					incrementCounter(chat, counter)
 					if re.match("^!([^ ]+)(.*)?$", chat['text']).group(1).lower() in Data.customTriggers:
 						c.sendChatMessage(Data.customTriggers[re.match("^!([^ ]+)(.*)?$", chat['text']).group(1).lower()])
 					else:
 						c.sendChatMessage("/clan %s" % random.choice(Data.noTriggers).format(chat['userName'], re.match("^!([^ ]+)(.*)?$", chat['text']).group(1), ordinal(random.randint(1, 100))))
-				elif re.match("!version", chat['text']):
-					incrementCounter(chat, counter)
-					c.sendChatMessage("Version %s" % Data.version)
 				if len(chat['text']) < (200 - len(chat['userName']) - 2):
 					c.sendChatMessage("/talkie %s: %s" % (chat['userName'], chat["text"]))
 				else:
